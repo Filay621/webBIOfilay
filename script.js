@@ -67,4 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
         element.style.transition = 'all 0.6s ease-out';
         observer.observe(element);
     });
+
+    // Автоматическая установка громкости при загрузке
+    const audioPlayer = document.querySelector('audio');
+    if (audioPlayer) {
+        audioPlayer.volume = 0.1; // Установка громкости на 10%
+    }
+
+    // Добавление кнопок Steam
+    const playerControls = document.querySelector('.player-controls');
+    if (playerControls) {
+        const steamButtons = document.createElement('div');
+        steamButtons.className = 'steam-buttons';
+        steamButtons.innerHTML = `
+            <a href="https://steamcommunity.com/id/sosiskaFOX" target="_blank" class="steam-button neon-button">Steam Profile 1</a>
+            <a href="https://steamcommunity.com/id/Filay621" target="_blank" class="steam-button neon-button">Steam Profile 2</a>
+        `;
+        playerControls.appendChild(steamButtons);
+    }
 }); 

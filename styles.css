@@ -162,6 +162,38 @@ footer::before {
     background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
 }
 
+.steam-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.steam-button {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #0ff;
+    box-shadow: 0 0 5px #0ff;
+    transition: all 0.3s ease;
+}
+
+.steam-button:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px #0ff;
+    transform: scale(1.05);
+}
+
+/* Обновленные стили плеера */
+.player-controls {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #0ff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
 @media (max-width: 768px) {
     .glowing-text {
         font-size: 3rem;
