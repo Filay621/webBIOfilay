@@ -841,10 +841,17 @@
             }
 
             .custom-player {
-                bottom: 70px;
-                right: 10px;
-                left: 10px;
-                width: auto;
+                position: relative;
+                bottom: auto;
+                right: auto;
+                left: auto;
+                width: 90%;
+                margin: 20px auto;
+                transform: none;
+            }
+
+            .custom-player.visible {
+                transform: none;
             }
 
             .player-header {
@@ -862,6 +869,8 @@
             .player-button {
                 padding: 10px;
                 font-size: 1rem;
+                min-height: 44px;
+                min-width: 44px;
             }
 
             .time-display {
@@ -947,11 +956,6 @@
 
             .volume-slider {
                 height: 6px;
-            }
-
-            .player-button {
-                min-height: 44px;
-                min-width: 44px;
             }
 
             /* Фиксы для iPhone */
