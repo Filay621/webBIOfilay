@@ -3,7 +3,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "**",
+            "src": "*.html",
             "use": "@vercel/static"
         }
     ],
@@ -12,5 +12,9 @@
             "src": "/(.*)",
             "dest": "/$1"
         }
-    ]
+    ],
+    "github": {
+        "enabled": true,
+        "silent": true
+    }
 } 
