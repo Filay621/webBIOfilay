@@ -164,26 +164,36 @@ footer::before {
 
 /* Стили плеера */
 .player-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     background: rgba(23, 26, 33, 0.95);
     border-radius: 4px;
     padding: 15px;
-    margin: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .track-name {
     color: #fff;
     font-size: 14px;
-    margin-bottom: 10px;
     text-align: center;
     font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
 }
 
 .control-buttons {
     display: flex;
     gap: 15px;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .control-button {
@@ -206,7 +216,7 @@ footer::before {
     display: flex;
     gap: 10px;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .steam-button {
@@ -234,7 +244,23 @@ footer::before {
     filter: brightness(0) invert(1);
 }
 
+/* Медиа-запрос для мобильных устройств */
 @media (max-width: 768px) {
+    .player-container {
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        padding: 10px;
+    }
+    
+    .control-buttons {
+        gap: 10px;
+    }
+    
+    .steam-buttons {
+        flex-direction: column;
+    }
+    
     .glowing-text {
         font-size: 3rem;
     }
