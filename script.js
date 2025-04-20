@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let currentTrackIndex = 0;
+    let isPlaying = false;
 
     // Функция для загрузки и воспроизведения трека
     function playTrack(index) {
@@ -83,12 +84,17 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTrackIndex = index;
             audioPlayer.src = musicTracks[index];
             audioPlayer.volume = 0.1; // Установка громкости на 10%
-            audioPlayer.play();
             
-            // Обновляем название трека если есть элемент для этого
+            // Обновляем название трека
             const trackName = document.querySelector('.track-name');
             if (trackName) {
-                trackName.textContent = musicTracks[index].split('/').pop().replace('.mp3', '');
+                const fileName = musicTracks[index].split('/').pop().replace('.mp3', '');
+                trackName.textContent = fileName;
+            }
+
+            // Если был на паузе, запускаем воспроизведение
+            if (isPlaying) {
+                audioPlayer.play();
             }
         }
     }
@@ -105,49 +111,83 @@ document.addEventListener('DOMContentLoaded', () => {
         playTrack(currentTrackIndex);
     }
 
-    // Инициализация плеера при загрузке страницы
+    // Функция для переключения воспроизведения/паузы
+    function togglePlay() {
+        const audioPlayer = document.querySelector('audio');
+        const playButton = document.querySelector('.play-button');
+        
+        if (audioPlayer) {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                isPlaying = true;
+                playButton.textContent = '⏸';
+            } else {
+                audioPlayer.pause();
+                isPlaying = false;
+                playButton.textContent = '▶';
+            }
+        }
+    }
+
+    // Инициализация плеера
     const audioPlayer = document.querySelector('audio');
     if (audioPlayer) {
+        // Создаем контейнер для плеера
+        const playerContainer = document.createElement('div');
+        playerContainer.className = 'player-container';
+        
+        // Добавляем название трека
+        const trackNameDiv = document.createElement('div');
+        trackNameDiv.className = 'track-name';
+        playerContainer.appendChild(trackNameDiv);
+
         // Добавляем кнопки управления
+        const controlButtons = document.createElement('div');
+        controlButtons.className = 'control-buttons';
+        controlButtons.innerHTML = `
+            <button class="control-button previous" onclick="previousTrack()">⏮</button>
+            <button class="control-button play-button" onclick="togglePlay()">▶</button>
+            <button class="control-button next" onclick="nextTrack()">⏭</button>
+        `;
+        playerContainer.appendChild(controlButtons);
+
+        // Добавляем кнопки Steam
+        const steamButtons = document.createElement('div');
+        steamButtons.className = 'steam-buttons';
+        steamButtons.innerHTML = `
+            <a href="https://steamcommunity.com/id/sosiskaFOX" target="_blank" class="steam-button">
+                <img src="https://community.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg" alt="Steam" class="steam-icon">
+                sosiskaFOX
+            </a>
+            <a href="https://steamcommunity.com/id/Filay621" target="_blank" class="steam-button">
+                <img src="https://community.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg" alt="Steam" class="steam-icon">
+                Filay621
+            </a>
+        `;
+        playerContainer.appendChild(steamButtons);
+
+        // Добавляем контейнер на страницу
         const playerControls = document.querySelector('.player-controls');
         if (playerControls) {
-            const controlButtons = document.createElement('div');
-            controlButtons.className = 'control-buttons';
-            controlButtons.innerHTML = `
-                <button class="control-button previous" onclick="previousTrack()">⏮</button>
-                <button class="control-button next" onclick="nextTrack()">⏭</button>
-            `;
-            playerControls.insertBefore(controlButtons, playerControls.firstChild);
-
-            // Добавляем отображение названия трека
-            const trackNameDiv = document.createElement('div');
-            trackNameDiv.className = 'track-name';
-            playerControls.insertBefore(trackNameDiv, playerControls.firstChild);
+            playerControls.appendChild(playerContainer);
         }
 
-        // Автопереключение при окончании трека
+        // Инициализируем первый трек
+        playTrack(0);
+
+        // Добавляем обработчик окончания трека
         audioPlayer.addEventListener('ended', () => {
             nextTrack();
         });
 
-        // Начинаем воспроизведение первого трека
-        playTrack(0);
+        // Делаем функции глобально доступными
+        window.previousTrack = previousTrack;
+        window.nextTrack = nextTrack;
+        window.togglePlay = togglePlay;
     }
 
     // Автоматическая установка громкости при загрузке
     if (audioPlayer) {
         audioPlayer.volume = 0.1; // Установка громкости на 10%
-    }
-
-    // Добавление кнопок Steam
-    const playerControls = document.querySelector('.player-controls');
-    if (playerControls) {
-        const steamButtons = document.createElement('div');
-        steamButtons.className = 'steam-buttons';
-        steamButtons.innerHTML = `
-            <a href="https://steamcommunity.com/id/sosiskaFOX" target="_blank" class="steam-button neon-button">Steam Profile 1</a>
-            <a href="https://steamcommunity.com/id/Filay621" target="_blank" class="steam-button neon-button">Steam Profile 2</a>
-        `;
-        playerControls.appendChild(steamButtons);
     }
 }); 
