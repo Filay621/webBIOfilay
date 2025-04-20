@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filay - Cyberpunk Portfolio</title>
+    <link rel="icon" type="image/png" href="icons/lapa.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -502,32 +503,29 @@
     <div class="content-wrapper">
         <div class="glitch-container">
             <h1 class="glitch-text">ФИЛЯ</h1>
-            <p class="subtitle">Web Developer & Gamer</p>
+            <p class="subtitle">Разработчик</p>
         </div>
 
         <div class="bio-card">
-            <p>Привет! Я Филя, веб-разработчик и геймер. Создаю крутые проекты и стримлю на Twitch.</p>
+            <p>Привет! Я Filay, увлеченный разработчик и создатель. Я специализируюсь на создании уникальных проектов и решений.</p>
+            <p>Мой путь в разработке начался с интереса к технологиям и желания создавать что-то новое. Сегодня я продолжаю развиваться и изучать новые технологии.</p>
         </div>
 
         <div class="social-links">
             <div class="telegram-links">
-                <a href="https://t.me/filay621" class="social-link" target="_blank">
-                    <img src="icons/tg.png" alt="Telegram" class="social-icon tg-icon">
-                    Чат
+                <a href="https://t.me/KRgtaVRchat" target="_blank" class="social-link">
+                    <img src="icons/tg1.png" alt="Telegram Channel" class="social-icon tg-icon"> Канал
                 </a>
-                <a href="https://t.me/KRgtaVRchat" class="social-link" target="_blank">
-                    <img src="icons/tg1.png" alt="Channel" class="social-icon tg-icon">
-                    Канал
+                <a href="https://t.me/Filay31" target="_blank" class="social-link">
+                    <img src="icons/tg.png" alt="Telegram" class="social-icon tg-icon"> Личный
                 </a>
             </div>
             <div class="steam-links">
-                <a href="https://steamcommunity.com/id/Filay621" class="social-link" target="_blank">
-                    <img src="icons/steam.png" alt="Steam" class="social-icon steam-icon">
-                    Steam
+                <a href="https://steamcommunity.com/id/Filay621" target="_blank" class="social-link">
+                    <img src="icons/steam.png" alt="Steam" class="social-icon steam-icon"> Steam
                 </a>
-                <a href="https://t.me/Furryghoul" class="social-link" target="_blank">
-                    <img src="icons/bf.png" alt="Boyfriend" class="social-icon heart-icon">
-                    Boyfriend
+                <a href="https://t.me/Furryghoul" target="_blank" class="social-link">
+                    <img src="icons/bf.png" alt="BF" class="social-icon heart-icon"> BF
                 </a>
             </div>
         </div>
@@ -535,99 +533,52 @@
 
     <div class="player-container">
         <div class="player-controls">
-            <audio id="music-player" autoplay>
+            <div class="track-name" id="track-name">Загрузка...</div>
+            <audio id="music-player" controls>
                 <source src="music/1.mp3" type="audio/mp3">
             </audio>
+            <div class="control-buttons">
+                <button onclick="prevTrack()" class="control-button">⏮</button>
+                <button onclick="nextTrack()" class="control-button">⏭</button>
+            </div>
         </div>
     </div>
 
     <div class="particles-container" id="particles"></div>
 
-    <p style="text-align: center; padding: 2rem; color: var(--neon-blue); position: relative; z-index: 2;">© 2052 Cyberpunk Portfolio by Filay</p>
+    <p style="text-align: center; padding: 2rem; color: var(--neon-blue); position: relative; z-index: 2;">By Filay</p>
 
-    <script src="script.js"></script>
     <script>
-        // Инициализация плеера при загрузке страницы
-        window.addEventListener('DOMContentLoaded', () => {
-            const player = document.getElementById('music-player');
-            
-            // Устанавливаем начальную громкость 10%
-            player.volume = 0.1;
+        const musicPlayer = document.getElementById('music-player');
+        const trackNameDisplay = document.getElementById('track-name');
+        const musicFiles = [
+            'music/1.mp3',
+            'music/2.mp3',
+            'music/3.mp3',
+            'music/4.mp3',
+            'music/5.mp3'
+        ];
+        let currentTrack = 0;
 
-            // Фикс для автовоспроизведения (браузеры могут блокировать)
-            const playPromise = player.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Автовоспроизведение заблокировано браузером");
-                });
+        function loadTrack(index) {
+            if (index >= 0 && index < musicFiles.length) {
+                currentTrack = index;
+                musicPlayer.src = musicFiles[currentTrack];
+                trackNameDisplay.textContent = `Трек ${currentTrack + 1}`;
+                musicPlayer.play();
             }
-
-            // Сохраняем громкость при перезагрузке страницы
-            player.addEventListener('volumechange', () => {
-                localStorage.setItem('playerVolume', player.volume);
-            });
-
-            // Восстанавливаем сохраненную громкость
-            const savedVolume = localStorage.getItem('playerVolume');
-            if (savedVolume !== null) {
-                player.volume = parseFloat(savedVolume);
-            }
-        });
-
-        // Функция для создания пузырьков
-        function createBubbles() {
-            const playerControls = document.querySelector('.player-controls');
-            let bubbleInterval;
-
-            function createBubble() {
-                const bubble = document.createElement('div');
-                bubble.className = 'audio-bubble';
-                
-                // Случайное положение по X
-                const xOffset = Math.random() * 240 - 120;
-                bubble.style.setProperty('--x-offset', `${xOffset}px`);
-                
-                // Случайный цвет из неоновой палитры
-                const colors = [
-                    'var(--neon-pink)',
-                    'var(--neon-blue)',
-                    'var(--neon-purple)'
-                ];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                bubble.style.background = color;
-                bubble.style.boxShadow = `0 0 5px ${color}`;
-                
-                // Случайное начальное положение
-                bubble.style.left = `${Math.random() * 100}%`;
-                
-                playerControls.appendChild(bubble);
-                
-                // Удаляем пузырек после анимации
-                bubble.addEventListener('animationend', () => {
-                    bubble.remove();
-                });
-            }
-
-            // Останавливаем предыдущий интервал, если он существует
-            if (playerControls.dataset.intervalId) {
-                clearInterval(Number(playerControls.dataset.intervalId));
-            }
-
-            // Создаем пузырьки каждые 100мс
-            bubbleInterval = setInterval(createBubble, 100);
-            playerControls.dataset.intervalId = bubbleInterval;
         }
 
-        function stopBubbles() {
-            const playerControls = document.querySelector('.player-controls');
-            if (playerControls.dataset.intervalId) {
-                clearInterval(Number(playerControls.dataset.intervalId));
-                delete playerControls.dataset.intervalId;
-            }
-            // Удаляем все существующие пузырьки
-            const bubbles = document.querySelectorAll('.audio-bubble');
-            bubbles.forEach(bubble => bubble.remove());
+        function nextTrack() {
+            loadTrack((currentTrack + 1) % musicFiles.length);
         }
+
+        function prevTrack() {
+            loadTrack(currentTrack === 0 ? musicFiles.length - 1 : currentTrack - 1);
+        }
+
+        musicPlayer.addEventListener('ended', nextTrack);
+        loadTrack(0);
     </script>
 </body>
 </html> 

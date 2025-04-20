@@ -165,36 +165,70 @@ footer::before {
 /* Стили плеера */
 .player-container {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: rgba(10, 10, 10, 0.8);
-    padding: 1rem;
-    border-radius: 10px;
-    border: 2px solid var(--neon-blue);
-    box-shadow: 
-        0 0 10px var(--neon-blue),
-        0 0 20px var(--neon-blue);
+    bottom: 20px;
+    right: 20px;
+    background: rgba(23, 26, 33, 0.95);
+    border-radius: 4px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
 .player-controls {
-    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.track-name {
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.control-button {
+    background: linear-gradient(to bottom, #4c6b22 5%, #3c5818 95%);
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px 15px;
+    transition: all 0.2s ease;
+}
+
+.control-button:hover {
+    background: linear-gradient(to bottom, #5c832a 5%, #4c6b22 95%);
 }
 
 audio {
-    width: 100%;
-    height: 40px;
+    width: 300px;
+    height: 32px;
     outline: none;
+    opacity: 0.9;
+    transition: all 0.3s ease;
     filter: hue-rotate(180deg);
 }
 
 audio::-webkit-media-controls-panel {
-    background: rgba(20, 20, 20, 0.9);
+    background: rgba(20, 20, 20, 0.6);
+    border-radius: 10px;
 }
 
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
     color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
 }
 
 /* Стили для кнопок Steam */
@@ -233,18 +267,18 @@ audio::-webkit-media-controls-time-remaining-display {
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 768px) {
     .player-container {
-        bottom: 1rem;
-        right: 1rem;
-        left: 1rem;
-        padding: 0.5rem;
+        bottom: 10px;
+        right: 10px;
+        left: 10px;
+        padding: 10px;
     }
     
-    .player-controls {
+    .control-buttons {
+        gap: 10px;
+    }
+    
+    audio {
         width: 100%;
-    }
-    
-    .steam-buttons {
-        flex-direction: column;
     }
     
     .glowing-text {
