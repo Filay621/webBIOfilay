@@ -194,6 +194,39 @@ footer::before {
     backdrop-filter: blur(10px);
 }
 
+/* Стили для кнопок управления музыкой */
+.control-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.control-button {
+    background: transparent;
+    border: 1px solid #0ff;
+    color: #0ff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px #0ff;
+    transform: scale(1.1);
+}
+
+.track-name {
+    text-align: center;
+    color: #0ff;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #0ff;
+}
+
 @media (max-width: 768px) {
     .glowing-text {
         font-size: 3rem;
