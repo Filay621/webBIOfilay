@@ -1,0 +1,9 @@
+@echo off
+echo Starting local server...
+cd /d G:\jd
+start "" python -m http.server 8000
+echo Server started! Opening website in browser...
+timeout /t 2 >nul
+start http://localhost:8000
+echo Press any key to stop the server...
+pause >nul 
