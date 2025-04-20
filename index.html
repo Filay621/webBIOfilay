@@ -792,200 +792,194 @@
         }
 
         @media (max-width: 768px) {
+            /* Оптимизация контейнера */
             .container {
-                width: 95%;
-                gap: 50px;
-                margin: 30px auto;
+                width: 100%;
+                padding: 10px;
+                gap: 30px;
+                margin: 20px auto;
             }
 
+            /* Оптимизация заголовка */
             .title-container {
-                margin: 80px 0;
+                margin: 40px 0;
+                min-height: 150px;
             }
 
             .cyber-title {
-                font-size: 3.5rem;
-                letter-spacing: 3px;
+                font-size: 3rem;
+                letter-spacing: 2px;
             }
 
+            /* Оптимизация инфо-карточки */
             .info-card {
-                margin: 30px 0;
-                padding: 25px;
+                margin: 20px 0;
+                padding: 20px;
+                border-width: 1px;
             }
 
             .info-line {
-                font-size: 0.9rem;
-                padding: 15px;
-                margin: 20px 0;
+                font-size: 0.85rem;
+                padding: 12px;
+                margin: 15px 0;
+                border-left-width: 1px;
             }
 
+            /* Оптимизация кнопок */
             .buttons-container {
-                margin: 30px 0;
-                padding: 20px;
-                gap: 15px;
+                margin: 20px 0;
+                padding: 15px;
+                gap: 12px;
                 grid-template-columns: 1fr;
             }
 
             .cyber-button {
-                padding: 15px;
+                padding: 12px;
                 font-size: 0.8rem;
                 width: 100%;
-            }
-
-            .buttons-container .cyber-button:last-child {
-                width: 100%;
+                height: 50px;
             }
 
             .button-icon {
-                width: 25px;
-                height: 25px;
+                width: 24px;
+                height: 24px;
             }
 
+            /* Оптимизация плеера */
             .custom-player {
                 position: relative;
                 bottom: auto;
                 right: auto;
                 left: auto;
-                width: 90%;
+                width: 95%;
                 margin: 20px auto;
+                padding: 15px;
                 transform: none;
-            }
-
-            .custom-player.visible {
-                transform: none;
+                border-width: 1px;
             }
 
             .player-header {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                margin-bottom: 10px;
             }
 
             .track-info {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                margin: 8px 0;
             }
 
-            .player-controls {
-                gap: 8px;
-            }
-
-            .player-button {
-                padding: 10px;
-                font-size: 1rem;
-                min-height: 44px;
-                min-width: 44px;
+            .progress-container {
+                height: 4px;
+                margin: 10px 0;
             }
 
             .time-display {
                 font-size: 0.7rem;
+                margin: 4px 0;
             }
 
-            .progress-container {
-                height: 5px;
-                margin: 12px 0;
+            .player-controls {
+                gap: 6px;
+                margin: 10px 0;
+            }
+
+            .player-button {
+                padding: 8px;
+                min-height: 40px;
+                min-width: 40px;
+                font-size: 0.9rem;
             }
 
             .volume-control {
-                margin-top: 12px;
+                margin-top: 10px;
             }
 
-            .theme-toggle {
-                top: 10px;
-                left: 10px;
-                padding: 8px 15px;
-                font-size: 0.7rem;
+            .volume-slider {
+                height: 3px;
             }
 
-            .system-clock {
-                top: 10px;
-                right: 10px;
-                padding: 8px 15px;
-            }
-
-            .time {
-                font-size: 0.7rem;
-            }
-
-            .copyright {
-                bottom: 10px;
-                font-size: 0.7rem;
-                padding: 5px 10px;
-                width: 100%;
-                text-align: center;
-                background: rgba(0, 0, 0, 0.8);
-            }
-
-            /* Улучшенные стили для мобильных устройств */
+            /* Оптимизация фоновых эффектов */
             .background {
-                background-size: 200% 200%;
+                background-size: 150% 150%;
             }
 
             .cyber-grid {
-                background-size: 30px 30px;
-            }
-
-            .hex-pattern {
+                background-size: 20px 20px;
                 opacity: 0.3;
             }
 
             .data-stream {
+                opacity: 0.15;
+            }
+
+            .hex-pattern {
                 opacity: 0.2;
             }
 
-            /* Оптимизация анимаций для мобильных устройств */
+            /* Оптимизация частиц */
+            .particle {
+                width: 1px;
+                height: 1px;
+            }
+
+            /* Оптимизация фиксированных элементов */
+            .theme-toggle {
+                top: 8px;
+                left: 8px;
+                padding: 6px 12px;
+                font-size: 0.65rem;
+            }
+
+            .system-clock {
+                top: 8px;
+                right: 8px;
+                padding: 6px 12px;
+            }
+
+            .time {
+                font-size: 0.65rem;
+            }
+
+            .copyright {
+                font-size: 0.65rem;
+                padding: 4px 8px;
+            }
+
+            /* Оптимизация анимаций */
             @keyframes tv-glitch {
                 0%, 100% { 
                     text-shadow: 
-                        0.03em 0 0 rgba(255,0,0,0.75),
-                        -0.015em -0.03em 0 rgba(0,255,0,0.75),
-                        0.015em 0.03em 0 rgba(0,0,255,0.75);
+                        0.02em 0 0 rgba(255,0,0,0.75),
+                        -0.01em -0.02em 0 rgba(0,255,0,0.75),
+                        0.01em 0.02em 0 rgba(0,0,255,0.75);
                 }
                 50% {
                     text-shadow: 
-                        -0.03em 0 0 rgba(255,0,0,0.75),
-                        0.015em 0.03em 0 rgba(0,255,0,0.75),
-                        -0.015em -0.03em 0 rgba(0,0,255,0.75);
+                        -0.02em 0 0 rgba(255,0,0,0.75),
+                        0.01em 0.02em 0 rgba(0,255,0,0.75),
+                        -0.01em -0.02em 0 rgba(0,0,255,0.75);
                 }
             }
 
             .scroll-element {
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
-            /* Улучшенное управление для сенсорных экранов */
-            .progress-container {
-                height: 8px;
-            }
-
-            .volume-slider {
-                height: 6px;
-            }
-
-            /* Фиксы для iPhone */
-            @supports (-webkit-touch-callout: none) {
-                .cyber-button {
-                    -webkit-backdrop-filter: blur(10px);
-                }
-
-                .custom-player {
-                    -webkit-backdrop-filter: blur(10px);
-                }
-
-                .background {
-                    -webkit-transform: translateZ(0);
-                }
-            }
-
-            /* Фиксы для маленьких экранов */
+            /* Оптимизация для очень маленьких экранов */
             @media (max-width: 360px) {
                 .cyber-title {
-                    font-size: 3rem;
+                    font-size: 2.5rem;
                 }
 
-                .buttons-container {
-                    gap: 10px;
+                .info-line {
+                    font-size: 0.8rem;
+                    padding: 10px;
                 }
 
                 .cyber-button {
-                    padding: 12px;
-                    font-size: 0.7rem;
+                    padding: 10px;
+                    font-size: 0.75rem;
+                    height: 45px;
                 }
 
                 .button-icon {
@@ -994,27 +988,28 @@
                 }
             }
 
-            /* Фиксы для ландшафтной ориентации */
+            /* Оптимизация для ландшафтной ориентации */
             @media (max-height: 500px) {
-                .title-container {
-                    margin: 40px 0;
+                .container {
+                    gap: 20px;
                 }
 
-                .cyber-title {
-                    font-size: 3rem;
+                .title-container {
+                    margin: 30px 0;
                 }
 
                 .info-card {
-                    margin: 20px 0;
+                    margin: 15px 0;
                     padding: 15px;
                 }
 
-                .custom-player {
-                    bottom: 10px;
+                .buttons-container {
+                    margin: 15px 0;
+                    grid-template-columns: repeat(2, 1fr);
                 }
 
-                .copyright {
-                    display: none;
+                .custom-player {
+                    margin: 15px auto;
                 }
             }
         }
