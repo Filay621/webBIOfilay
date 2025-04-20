@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Список всех музыкальных треков
     const musicTracks = [
-        'music/Part-Time Friends - Streets and Stories.mp3',
+        'music/Part-Time_Friends_-_Streets_and_Stories_63956883.mp3',
         'music/XdrianGM - Miracle.mp3'
     ];
 
