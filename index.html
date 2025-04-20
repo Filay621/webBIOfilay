@@ -293,6 +293,8 @@
             border-radius: 50%;
             pointer-events: none;
             opacity: 0;
+            box-shadow: 0 0 10px #ff2d55, 0 0 20px #ff2d55;
+            z-index: 9999;
         }
 
         /* Улучшаем отображение на мобильных устройствах */
@@ -412,19 +414,19 @@
         function createParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            particle.style.width = Math.random() * 4 + 2 + 'px';
+            particle.style.width = Math.random() * 8 + 4 + 'px';
             particle.style.height = particle.style.width;
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
             particle.style.opacity = '0';
             particle.style.transform = 'translateY(0px)';
-            particle.style.transition = 'all ' + (Math.random() * 2 + 1) + 's linear';
+            particle.style.transition = 'all ' + (Math.random() * 1.5 + 0.5) + 's linear';
             return particle;
         }
 
         const particlesContainer = document.getElementById('particles');
         const particles = [];
-        const maxParticles = 50;
+        const maxParticles = 100;
 
         function animateParticles() {
             if (particles.length < maxParticles) {
@@ -432,17 +434,15 @@
                 particlesContainer.appendChild(particle);
                 particles.push(particle);
                 
-                // Запускаем анимацию после добавления частицы
                 setTimeout(() => {
-                    particle.style.opacity = '0.8';
+                    particle.style.opacity = '1';
                     particle.style.transform = 'translateY(-100vh)';
                 }, 10);
                 
-                // Удаляем частицу после завершения анимации
                 setTimeout(() => {
                     particle.remove();
                     particles.splice(particles.indexOf(particle), 1);
-                }, 3000);
+                }, 2000);
             }
         }
 
@@ -452,7 +452,7 @@
 
         audio.addEventListener('play', () => {
             particlesContainer.style.display = 'block';
-            particleInterval = setInterval(animateParticles, 100);
+            particleInterval = setInterval(animateParticles, 50);
         });
 
         audio.addEventListener('pause', () => {
