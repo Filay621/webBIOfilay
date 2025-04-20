@@ -165,50 +165,36 @@ footer::before {
 /* Стили плеера */
 .player-container {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(23, 26, 33, 0.95);
-    border-radius: 4px;
-    padding: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(10, 10, 10, 0.8);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue);
     z-index: 1000;
 }
 
 .player-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+    width: 300px;
 }
 
-.track-name {
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-    font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
-    margin-bottom: 10px;
+audio {
+    width: 100%;
+    height: 40px;
+    outline: none;
+    filter: hue-rotate(180deg);
 }
 
-.control-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 10px;
+audio::-webkit-media-controls-panel {
+    background: rgba(20, 20, 20, 0.9);
 }
 
-.control-button {
-    background: linear-gradient(to bottom, #4c6b22 5%, #3c5818 95%);
-    border: none;
-    border-radius: 2px;
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-    padding: 5px 15px;
-    transition: all 0.2s ease;
-}
-
-.control-button:hover {
-    background: linear-gradient(to bottom, #5c832a 5%, #4c6b22 95%);
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    color: var(--neon-blue);
 }
 
 /* Стили для кнопок Steam */
@@ -247,14 +233,14 @@ footer::before {
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 768px) {
     .player-container {
-        bottom: 10px;
-        right: 10px;
-        left: 10px;
-        padding: 10px;
+        bottom: 1rem;
+        right: 1rem;
+        left: 1rem;
+        padding: 0.5rem;
     }
     
-    .control-buttons {
-        gap: 10px;
+    .player-controls {
+        width: 100%;
     }
     
     .steam-buttons {
