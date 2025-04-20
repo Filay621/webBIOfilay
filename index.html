@@ -219,48 +219,45 @@
             bottom: 2rem;
             right: 2rem;
             background: rgba(10, 10, 10, 0.9);
-            padding: 1rem;
-            border-radius: 10px;
+            padding: 1.5rem;
+            border-radius: 15px;
             border: 2px solid var(--neon-blue);
-            box-shadow: 
-                0 0 10px var(--neon-blue),
-                0 0 20px var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            min-width: 300px;
+        }
+
+        .player-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .player-button {
+            background: none;
+            border: 2px solid var(--neon-pink);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
             transition: all 0.3s ease;
         }
 
-        .music-player:hover {
-            transform: scale(1.05);
+        .player-button:hover {
+            background: var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink);
         }
 
-        .music-player::before {
-            content: '🎵';
-            position: absolute;
-            top: -2rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            animation: float 1s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        audio {
-            width: 300px;
-            height: 40px;
-            outline: none;
-            filter: hue-rotate(180deg);
-        }
-
-        audio::-webkit-media-controls-panel {
-            background: linear-gradient(45deg, var(--dark-bg), #1a1a1a);
-        }
-
-        audio::-webkit-media-controls-current-time-display,
-        audio::-webkit-media-controls-time-remaining-display {
+        .track-info {
             color: var(--neon-blue);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 0.5rem;
         }
 
         .cyber-dots {
@@ -369,7 +366,10 @@
         }
 
         .heart-icon {
-            animation: rgb-heart 3s linear infinite;
+            font-size: 2rem;
+            animation: heartbeat 1.5s ease-in-out infinite, rainbow 5s linear infinite;
+            display: inline-block;
+            margin: 0 10px;
         }
 
         /* Специфичные цвета для разных иконок */
@@ -379,120 +379,39 @@
         .steam-icon { filter: brightness(1.2) drop-shadow(0 0 6px #66c0f4); }
         .steam-icon:hover { filter: brightness(1.5) drop-shadow(0 0 10px #66c0f4); }
 
-        /* Стили для плеера */
-        .player-container {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: rgba(10, 10, 10, 0.4);
-            padding: 0.8rem;
-            border-radius: 12px;
-            border: 1px solid var(--neon-blue);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        .copyright-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 5s ease infinite;
+            text-align: center;
+            margin: 2rem 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
-        .player-container:hover {
-            background: rgba(10, 10, 10, 0.8);
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 20px rgba(255, 45, 85, 0.3);
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .player-controls {
-            position: relative;
-            overflow: hidden;
-            width: 200px;
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
-        /* Кастомизация аудио плеера */
-        audio {
-            width: 200px;
-            height: 32px;
-            outline: none;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-            filter: hue-rotate(180deg);
-        }
-
-        audio::-webkit-media-controls-panel {
-            background: rgba(20, 20, 20, 0.6);
-            border-radius: 10px;
-        }
-
-        audio::-webkit-media-controls-current-time-display,
-        audio::-webkit-media-controls-time-remaining-display {
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px var(--neon-blue);
-        }
-
-        audio::-webkit-media-controls-play-button,
-        audio::-webkit-media-controls-mute-button {
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        audio::-webkit-media-controls-play-button:hover,
-        audio::-webkit-media-controls-mute-button:hover {
-            filter: brightness(1.5) drop-shadow(0 0 5px var(--neon-pink));
-        }
-
-        audio::-webkit-media-controls-timeline,
-        audio::-webkit-media-controls-volume-slider {
-            height: 2px;
-            background: rgba(0, 255, 255, 0.3);
-            border-radius: 2px;
-        }
-
-        audio::-webkit-media-controls-timeline:hover,
-        audio::-webkit-media-controls-volume-slider:hover {
-            height: 4px;
-        }
-
-        /* Стили для пузырьков */
-        @keyframes bubble-up {
-            0% {
-                transform: translateY(100%) translateX(0);
-                opacity: 0;
-            }
-            20% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100%) translateX(var(--x-offset));
-                opacity: 0;
-            }
-        }
-
-        .audio-bubble {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: bubble-up 1.2s linear infinite;
-            filter: blur(1px);
-        }
-
-        @media (max-width: 768px) {
-            .player-container {
-                bottom: 1rem;
-                right: 1rem;
-                padding: 0.5rem;
-            }
-
-            .player-controls {
-                width: 180px;
-            }
-
-            audio {
-                width: 180px;
-                height: 30px;
-            }
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            33% { color: #00ff00; }
+            66% { color: #0000ff; }
+            100% { color: #ff0000; }
         }
     </style>
 </head>
@@ -503,7 +422,7 @@
     <div class="content-wrapper">
         <div class="glitch-container">
             <h1 class="glitch-text">ФИЛЯ</h1>
-            <p class="subtitle">Разработчик</p>
+            <div class="copyright-text">2052 <span class="heart-icon">❤️</span> By Filay</div>
         </div>
 
         <div class="bio-card">
@@ -524,6 +443,9 @@
                 <a href="https://steamcommunity.com/id/Filay621" target="_blank" class="social-link">
                     <img src="icons/steam.png" alt="Steam" class="social-icon steam-icon"> Steam
                 </a>
+                <a href="https://steamcommunity.com/id/sosiskaFOX" target="_blank" class="social-link">
+                    <img src="icons/steam.png" alt="Steam" class="social-icon steam-icon"> Steam 2
+                </a>
                 <a href="https://t.me/Furryghoul" target="_blank" class="social-link">
                     <img src="icons/bf.png" alt="BF" class="social-icon heart-icon"> BF
                 </a>
@@ -531,16 +453,15 @@
         </div>
     </div>
 
-    <div class="player-container">
+    <div class="music-player">
+        <audio id="audio-player" controls>
+            <source src="" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="track-info" id="track-info">Выберите трек</div>
         <div class="player-controls">
-            <div class="track-name" id="track-name">Загрузка...</div>
-            <audio id="music-player" controls>
-                <source src="music/1.mp3" type="audio/mp3">
-            </audio>
-            <div class="control-buttons">
-                <button onclick="prevTrack()" class="control-button">⏮</button>
-                <button onclick="nextTrack()" class="control-button">⏭</button>
-            </div>
+            <button class="player-button" onclick="previousTrack()">⏮️ Предыдущий</button>
+            <button class="player-button" onclick="nextTrack()">Следующий ⏭️</button>
         </div>
     </div>
 
@@ -549,36 +470,52 @@
     <p style="text-align: center; padding: 2rem; color: var(--neon-blue); position: relative; z-index: 2;">By Filay</p>
 
     <script>
-        const musicPlayer = document.getElementById('music-player');
-        const trackNameDisplay = document.getElementById('track-name');
-        const musicFiles = [
-            'music/1.mp3',
-            'music/2.mp3',
-            'music/3.mp3',
-            'music/4.mp3',
-            'music/5.mp3'
-        ];
-        let currentTrack = 0;
+        let currentTrackIndex = 0;
+        let tracks = [];
+        
+        // Загрузка списка треков
+        async function loadTracks() {
+            try {
+                const response = await fetch('music/tracks.json');
+                const data = await response.json();
+                tracks = data;
+                if (tracks.length > 0) {
+                    loadTrack(0);
+                }
+            } catch (error) {
+                console.error('Ошибка загрузки треков:', error);
+            }
+        }
 
         function loadTrack(index) {
-            if (index >= 0 && index < musicFiles.length) {
-                currentTrack = index;
-                musicPlayer.src = musicFiles[currentTrack];
-                trackNameDisplay.textContent = `Трек ${currentTrack + 1}`;
-                musicPlayer.play();
+            if (index >= 0 && index < tracks.length) {
+                const player = document.getElementById('audio-player');
+                const trackInfo = document.getElementById('track-info');
+                player.src = 'music/' + tracks[index];
+                trackInfo.textContent = tracks[index].replace('.mp3', '');
+                currentTrackIndex = index;
+                player.play().catch(e => console.log('Автовоспроизведение заблокировано'));
             }
         }
 
         function nextTrack() {
-            loadTrack((currentTrack + 1) % musicFiles.length);
+            let nextIndex = (currentTrackIndex + 1) % tracks.length;
+            loadTrack(nextIndex);
         }
 
-        function prevTrack() {
-            loadTrack(currentTrack === 0 ? musicFiles.length - 1 : currentTrack - 1);
+        function previousTrack() {
+            let prevIndex = currentTrackIndex - 1;
+            if (prevIndex < 0) prevIndex = tracks.length - 1;
+            loadTrack(prevIndex);
         }
 
-        musicPlayer.addEventListener('ended', nextTrack);
-        loadTrack(0);
+        // Автоматическое переключение на следующий трек
+        document.getElementById('audio-player').addEventListener('ended', () => {
+            nextTrack();
+        });
+
+        // Загружаем треки при загрузке страницы
+        window.addEventListener('load', loadTracks);
     </script>
 </body>
 </html> 
