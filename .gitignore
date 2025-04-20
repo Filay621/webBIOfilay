@@ -1,4 +1,17 @@
+# System files
 .DS_Store
-node_modules/
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.sublime-*
+
+# Logs
+*.log
+
+# Environment variables
 .env
-*.log 
+.env.local
+
+node_modules/ 
